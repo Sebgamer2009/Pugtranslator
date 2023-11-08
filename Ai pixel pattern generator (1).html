@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+
+<style id="webmakerstyle">
+body {
+  background-color: #d95b43;
+  color: #fff;
+  font-family: sans-serif;
+}
+
+.container {
+  width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #222;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.input-container {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+#translateButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #d9a370;
+  color: #fff;
+  cursor: pointer;
+}
+
+.output-container {
+  margin-top: 10px;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #99f9ff;
+  color: #007bff;
+  resize: none;
+}
+
+</style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English to Pug Translator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="input-container">
+      <label for="englishInput">Enter English text:</label>
+      <input type="text" id="englishInput" placeholder="Enter English text here...">
+    </div>
+
+    <button id="translateButton">Translate</button>
+
+    <div class="output-container">
+      <label for="pugOutput">Pug translation:</label>
+      <textarea id="pugOutput" readonly></textarea>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+<script>
+const englishInput = document.getElementById('englishInput');
+const pugOutput = document.getElementById('pugOutput');
+const translateButton = document.getElementById('translateButton');
+
+translateButton.addEventListener('click', () => {
+  const englishText = englishInput.value;
+  const pugText = translateEnglishToPug(englishText);
+  pugOutput.value = pugText;
+});
+
+function translateEnglishToPug(englishText) {
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  const consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
+
+  let pugText = '';
+  for (let i = 0; i < englishText.length; i++) {
+    const letter = englishText[i].toLowerCase();
+
+    if (vowels.includes(letter)) {
+      pugText += 'ug';
+    } else if (consonants.includes(letter)) {
+      pugText += 'up' + letter;
+    } else {
+      pugText += letter;
+    }
+  }
+
+  return pugText;
+}
+
+//# sourceURL=userscript.js
+</script>
+</body>
+</html>
